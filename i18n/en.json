@@ -1,0 +1,7 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"vikititleicon-desc": "VIKI plugin to show logo from pages using Title Icon extension",
+	"vikititleicon-error-fetch" : "Error fetching title icon data for node: $1."
+}

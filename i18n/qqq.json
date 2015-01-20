@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cindy Cicalese",
+			"Jason Ji"
+		]
+	},
+	"vikititleicon-desc": "{{desc|name=VikiTitleIcon|url=http://www.mediawiki.org/wiki/Extension/VikiTitleIcon}}",
+	"vikititleicon-error-fetch": "Error message to be displayed when a title icon data fetch has failed. $1 = pageTitle of node for which title icon data fetch has failed"
+}
