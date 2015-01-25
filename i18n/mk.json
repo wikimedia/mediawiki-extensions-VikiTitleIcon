@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"vikititleicon-desc": "Приклучок VIKI за прикажување на лого од страници користејќи го додатокот Title Icon",
+	"vikititleicon-error-fetch": "Грешка при добивањето на податоците за насловната икона за јазолот: $1."
+}
