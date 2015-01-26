@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Macofe"
+		]
+	},
+	"vikititleicon-desc": "Complemento VIKI para mostrar logotipos de las páginas que usan la extensión Title Icon",
+	"vikititleicon-error-fetch": "Error al obtener datos del icono del título para el nodo: $1."
+}

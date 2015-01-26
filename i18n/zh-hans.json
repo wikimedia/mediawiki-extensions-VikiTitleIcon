@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"vikititleicon-desc": "从使用标题图标扩展的页面显示标志的VIKI插件",
+	"vikititleicon-error-fetch": "获取用于节点的标题图标数据时出错：$1。"
+}
