@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Metalhead64"
+			"Metalhead64",
+			"Purodha"
 		]
 	},
-	"vikititleicon-desc": "Ergänzt das VIKI-plugin zum Anzeigen des Logos von Seiten, die die Erweiterung „Title Icon“ verwenden",
+	"vikititleicon-desc": "Das VIKI-plugin zum Anzeigen des Logos von Seiten, die die Erweiterung „Title Icon“ verwenden",
 	"vikititleicon-error-fetch": "Fehler beim Abrufen der Titelicondaten für den Knoten: $1."
 }
