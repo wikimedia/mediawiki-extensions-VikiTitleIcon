@@ -84,7 +84,8 @@ class ApiGetTitleIcons extends ApiBase {
 
 			$api->execute();
 			$data = $api->getResultData();
-			$key = array_shift( array_keys( $data["query"]["pages"] ) );
+			$keys = array_keys( $data['query']['pages'] );
+			$key = array_shift( $keys );
 			$url = $data["query"]["pages"][$key]["imageinfo"][0]["url"];
 			$titleIconURLs[] = $url;
 		}
