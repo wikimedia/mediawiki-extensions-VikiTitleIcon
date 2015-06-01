@@ -4,5 +4,6 @@
 			"Elisardojm"
 		]
 	},
-	"vikititleicon-desc": "Complemento VIKI para amosar icona nas páxinas que usan a extensión Title Icon"
+	"vikititleicon-desc": "Complemento VIKI para amosar icona nas páxinas que usan a extensión Title Icon",
+	"vikititleicon-error-fetch": "Erro ó obter os datos da icona do título para o nodo: $1."
 }
