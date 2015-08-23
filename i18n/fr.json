@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wladek92"
+		]
+	},
+	"vikititleicon-error-fetch": "Erreur lors de l'accès aux données concernant l'icône de titre pour le nœud: $1."
+}
