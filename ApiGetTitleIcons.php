@@ -65,6 +65,47 @@ class ApiGetTitleIcons extends ApiBase {
 			$key = array_shift( array_keys( $data["query"]["results"] ) );
 			$titleIconNames = $data["query"]["results"][$key]["printouts"]["$titleIconWithSpaces"];
 		}
+
+		if( count( $titleIconNames ) == 0 ) {
+			// If there are no title icons from the page, then get them from the page's categories
+
+			$api = new ApiMain(
+				new DerivativeRequest(
+					$this->getRequest(),
+					array(
+						'action' => 'query',
+						'titles' => $pageNameWithSpaces,
+						'prop' => 'categories'
+					)
+				),
+				false
+			);
+
+			$api->execute();
+			$data = $api->getResultData();
+
+			$keys = array_keys( $data['query']['pages'] );
+			$key = array_shift( $keys );
+
+
+			if( array_key_exists( "categories", $data["query"]["pages"][$key]) ) {
+				$categories = array();
+				foreach($data["query"]["pages"][$key]["categories"] as $categoryObject) {
+					$categories[] = $categoryObject["title"];
+				}
+
+				foreach( $categories as $category ) {
+					$title = Title::newFromText( $category );
+
+					$discoveredIcons = $this->getPropertyValues( $title, $titleIconWithSpaces );
+					foreach($discoveredIcons as $icon) {
+						$titleIconNames[] = $icon;
+					}
+				}
+			}
+		}
+
+
 		$titleIconURLs = array();
 
 		foreach ( $titleIconNames as $name ) {
@@ -98,6 +139,30 @@ class ApiGetTitleIcons extends ApiBase {
 		return true;
 
 	}
+
+	private function getPropertyValues( Title $title, $propertyname ) {
+
+		$store = \SMW\StoreFactory::getStore();
+
+		// remove fragment
+		$title = Title::newFromText( $title->getPrefixedText() );
+
+		$subject = SMWDIWikiPage::newFromTitle( $title );
+		$data = $store->getSemanticData( $subject );
+		$property = SMWDIProperty::newFromUserLabel( $propertyname );
+		$values = $data->getPropertyValues( $property );
+
+		$strings = array();
+		foreach ( $values as $value ) {
+			if ( $value->getDIType() == SMWDataItem::TYPE_STRING ||
+				$value->getDIType() == SMWDataItem::TYPE_BLOB ) {
+				$strings[] = trim( $value->getString() );
+			}
+		}
+
+		return $strings;
+	}
+
 	public function getDescription() {
 		return "Get the URLs of all Title Icons for the page, if any exist.
 
