@@ -24,8 +24,23 @@
 /**
 * To activate the functionality of this extension include the following
 * in your LocalSettings.php file:
+* MW 1.25+:
+* wfLoadExtension("VikiTitleIcon");
+* MW 1.22 - 1.24:
 * include_once("$IP/extensions/VikiTitleIcon/VikiTitleIcon.php");
 */
+
+if ( function_exists( 'wfLoadExtension' ) ) {
+	wfLoadExtension( 'VikiTitleIcon' );
+	// Keep i18n globals so mergeMessageFileList.php doesn't break
+	$wgMessagesDirs['VikiTitleIcon'] = __DIR__ . "/i18n";
+	$wgExtensionMessagesFiles['VikiTitleIcon'] = __DIR__ . '/VikiTitleIcon.i18n.php';
+	wfWarn(
+		'Deprecated PHP entry point used for VikiTitleIcon extension. Please use wfLoadExtension instead, ' .
+		'see https://www.mediawiki.org/wiki/Extension_registration for more details.'
+	);
+	return;
+}
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( '<b>Error:</b> This file is part of a MediaWiki extension and cannot be run standalone.' );
@@ -55,7 +70,7 @@ if ( version_compare( SMW_VERSION, '1.9', '<' ) ) {
 $wgExtensionCredits['parserhook'][] = array (
 	'path' => __FILE__,
 	'name' => 'VikiTitleIcon',
-	'version' => '1.1',
+	'version' => '1.2',
 	'author' => '[http://www.mediawiki.org/wiki/User:Jji Jason Ji]',
 	'descriptionmsg' => 'vikititleicon-desc',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:VikiTitleIcon'
@@ -84,11 +99,7 @@ if ( array_key_exists( 'AfterVisitNodeHook', $wgVIKI_Function_Hooks ) )
 else
 	$wgVIKI_Function_Hooks['AfterVisitNodeHook'] = array( 'VIKI.VikiTitleIcon.checkForTitleIcon' );
 
-$wgHooks['ParserFirstCallInit'][] = 'efVikiTitleIcon_AddResource';
+$wgHooks['ParserFirstCallInit'][] = 'VikiTitleIcon::efVikiTitleIcon_AddResource';
 $wgAPIModules['getTitleIcons'] = 'ApiGetTitleIcons';
 $wgAutoloadClasses['ApiGetTitleIcons'] = __DIR__ . '/ApiGetTitleIcons.php';
-
-function efVikiTitleIcon_AddResource ( & $parser ) {
-	VikiJS::addResourceModule( "ext.VikiTitleIcon" );
-	return true;
-}
+$wgAutoloadClasses['VikiTitleIcon'] = __DIR__ . '/VikiTitleIcon_body.php';

@@ -1,0 +1,40 @@
+{
+	"name": "VikiTitleIcon",
+	"version": "1.2",
+	"author": "[http://www.mediawiki.org/wiki/User:Jji Jason Ji]",
+	"url": "http://www.mediawiki.org/wiki/Extension:VikiTitleIcon",
+	"descriptionmsg": "vikititleicon-desc",
+	"type": "parserhook",
+	"APIModules": {
+		"getTitleIcons": "ApiGetTitleIcons"
+	},
+	"MessagesDirs": {
+		"VikiTitleIcon": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"ApiGetTitleIcons": "ApiGetTitleIcons.php",
+		"VikiTitleIcon" : "VikiTitleIcon_body.php"
+	},
+	"ResourceModules": {
+		"ext.VikiTitleIcon": {
+			"scripts": [
+				"VikiTitleIcon.js"
+			],
+			"messages": [
+				"vikititleicon-error-fetch"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "VikiTitleIcon"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"VikiTitleIcon::efVikiTitleIcon_AddResource"
+		]
+	},
+	"callback": "VikiTitleIcon::onRegistration"
+}
