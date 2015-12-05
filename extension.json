@@ -15,7 +15,7 @@
 	},
 	"AutoloadClasses": {
 		"ApiGetTitleIcons": "ApiGetTitleIcons.php",
-		"VikiTitleIcon" : "VikiTitleIcon_body.php"
+		"VikiTitleIcon": "VikiTitleIcon_body.php"
 	},
 	"ResourceModules": {
 		"ext.VikiTitleIcon": {
@@ -36,5 +36,6 @@
 			"VikiTitleIcon::efVikiTitleIcon_AddResource"
 		]
 	},
-	"callback": "VikiTitleIcon::onRegistration"
+	"callback": "VikiTitleIcon::onRegistration",
+	"manifest_version": 1
 }
