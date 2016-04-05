@@ -29,8 +29,8 @@ class ApiGetTitleIcons extends ApiBase {
 	public function execute() {
 		$pageTitle = $this->getMain()->getVal( 'pageTitle' );
 
-		global $TitleIcon_TitleIconPropertyName;
-		$myTitleIconName = $TitleIcon_TitleIconPropertyName;
+		global $wgTitleIcon_TitleIconPropertyName;
+		$myTitleIconName = $wgTitleIcon_TitleIconPropertyName;
 
 		$pageNameWithSpaces = str_replace( '_', ' ', $pageTitle );
 		$titleIconWithSpaces = str_replace( '+', ' ', $myTitleIconName );
@@ -48,7 +48,8 @@ class ApiGetTitleIcons extends ApiBase {
 		);
 
 		$api->execute();
-		$data = $api->getResultData();
+		$data = $api->getResult()->getResultData(
+			null, ['BC' => [], 'Types' => [], 'Strip' => 'all'] );
 
 		if ( is_array( $data["query"]["results"] ) && count( $data["query"]["results"] ) == 0 ) {
 			$this->getResult()->addValue( null, $this->getModuleName(),
@@ -82,8 +83,8 @@ class ApiGetTitleIcons extends ApiBase {
 			);
 
 			$api->execute();
-			$data = $api->getResultData();
-
+			$data = $api->getResult()->getResultData(
+				null, ['BC' => [], 'Types' => [], 'Strip' => 'all'] );
 			$keys = array_keys( $data['query']['pages'] );
 			$key = array_shift( $keys );
 
@@ -124,7 +125,8 @@ class ApiGetTitleIcons extends ApiBase {
 			);
 
 			$api->execute();
-			$data = $api->getResultData();
+			$data = $api->getResult()->getResultData(
+				null, ['BC' => [], 'Types' => [], 'Strip' => 'all'] );
 			$keys = array_keys( $data['query']['pages'] );
 			$key = array_shift( $keys );
 			$url = $data["query"]["pages"][$key]["imageinfo"][0]["url"];

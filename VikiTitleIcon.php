@@ -70,7 +70,7 @@ if ( version_compare( SMW_VERSION, '1.9', '<' ) ) {
 $wgExtensionCredits['parserhook'][] = array (
 	'path' => __FILE__,
 	'name' => 'VikiTitleIcon',
-	'version' => '1.2',
+	'version' => '1.3',
 	'author' => '[http://www.mediawiki.org/wiki/User:Jji Jason Ji]',
 	'descriptionmsg' => 'vikititleicon-desc',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:VikiTitleIcon'
