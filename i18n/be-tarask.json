@@ -4,5 +4,6 @@
 			"Red Winged Duck"
 		]
 	},
-	"vikititleicon-desc": "VIKI-дадатак для паказу лягатыпу з старонак з дапамогай пашырэньня Title Icon"
+	"vikititleicon-desc": "VIKI-дадатак для паказу лягатыпу з старонак з дапамогай пашырэньня Title Icon",
+	"vikititleicon-error-fetch": "Памылка атрыманьня зьвестак выявы загалоўку для вузла: $1."
 }
