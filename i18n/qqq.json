@@ -7,5 +7,7 @@
 		]
 	},
 	"vikititleicon-desc": "{{desc|name=VikiTitleIcon|url=https://www.mediawiki.org/wiki/Extension/VikiTitleIcon}}",
-	"vikititleicon-error-fetch": "Error message to be displayed when a title icon data fetch has failed. $1 = pageTitle of node for which title icon data fetch has failed"
+	"vikititleicon-error-fetch": "Error message to be displayed when a title icon data fetch has failed. $1 = pageTitle of node for which title icon data fetch has failed",
+	"apihelp-getTitleIcons-description" : "{{doc-apihelp-description|getTitleIcons}}",
+	"apihelp-getTitleIcons-param-pageTitle" : "{{doc-apihelp-param|getTitleIcons|pageTitle}}"
 }

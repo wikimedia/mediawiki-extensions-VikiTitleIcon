@@ -30,113 +30,34 @@ class ApiGetTitleIcons extends ApiBase {
 		$pageTitle = $this->getMain()->getVal( 'pageTitle' );
 
 		global $wgTitleIcon_TitleIconPropertyName;
-		$myTitleIconName = $wgTitleIcon_TitleIconPropertyName;
+		$titleIconProperty = $wgTitleIcon_TitleIconPropertyName;
 
-		$pageNameWithSpaces = str_replace( '_', ' ', $pageTitle );
-		$titleIconWithSpaces = str_replace( '+', ' ', $myTitleIconName );
+		$title = Title::newFromText( $pageTitle );
 
-		$api = new ApiMain(
-			new DerivativeRequest(
-				$this->getRequest(),
-				array(
-					'action' => 'askargs',
-					'conditions' => $pageTitle,
-					'printouts' => $titleIconWithSpaces
-				)
-			),
-			false
-		);
+		$titleIconNames = $this->getPropertyValues( $title, $titleIconProperty );
 
-		$api->execute();
-		$data = $api->getResult()->getResultData(
-			null, ['BC' => [], 'Types' => [], 'Strip' => 'all'] );
-
-		if ( is_array( $data["query"]["results"] ) && count( $data["query"]["results"] ) == 0 ) {
-			$this->getResult()->addValue( null, $this->getModuleName(),
-				array( 'pageTitle' => $pageTitle,
-					'titleIcons' => array()
-						) );
-
-			return true;
-		}
-
-		if ( array_key_exists( $pageNameWithSpaces, $data["query"]["results"] ) )
-			$titleIconNames = $data["query"]["results"]["$pageNameWithSpaces"]["printouts"]["$titleIconWithSpaces"];
-		else {
-			$key = array_shift( array_keys( $data["query"]["results"] ) );
-			$titleIconNames = $data["query"]["results"][$key]["printouts"]["$titleIconWithSpaces"];
-		}
-
-		if( count( $titleIconNames ) == 0 ) {
-			// If there are no title icons from the page, then get them from the page's categories
-
-			$api = new ApiMain(
-				new DerivativeRequest(
-					$this->getRequest(),
-					array(
-						'action' => 'query',
-						'titles' => $pageNameWithSpaces,
-						'prop' => 'categories'
-					)
-				),
-				false
-			);
-
-			$api->execute();
-			$data = $api->getResult()->getResultData(
-				null, ['BC' => [], 'Types' => [], 'Strip' => 'all'] );
-			$keys = array_keys( $data['query']['pages'] );
-			$key = array_shift( $keys );
-
-
-			if( array_key_exists( "categories", $data["query"]["pages"][$key]) ) {
-				$categories = array();
-				foreach($data["query"]["pages"][$key]["categories"] as $categoryObject) {
-					$categories[] = $categoryObject["title"];
-				}
-
-				foreach( $categories as $category ) {
-					$title = Title::newFromText( $category );
-
-					$discoveredIcons = $this->getPropertyValues( $title, $titleIconWithSpaces );
-					foreach($discoveredIcons as $icon) {
-						$titleIconNames[] = $icon;
-					}
+		$categories = $title->getParentCategories();
+		foreach( $categories as $category ) {
+			$categoryTitle = Title::newFromText( $category );
+			$names = $this->getPropertyValues( $categoryTitle, $titleIconProperty );
+			foreach( $names as $name ) {
+				if ( ! in_array( $name, $titleIconNames ) ) {
+					$titleIconNames[] = $name;
 				}
 			}
 		}
 
-
 		$titleIconURLs = array();
-
 		foreach ( $titleIconNames as $name ) {
-
-			$api = new ApiMain(
-				new DerivativeRequest(
-					$this->getRequest(),
-					array(
-						'action' => 'query',
-						'titles' => 'File:' . $name,
-						'prop' => 'imageinfo',
-						'iiprop' => 'url'
-					)
-				),
-				false
-			);
-
-			$api->execute();
-			$data = $api->getResult()->getResultData(
-				null, ['BC' => [], 'Types' => [], 'Strip' => 'all'] );
-			$keys = array_keys( $data['query']['pages'] );
-			$key = array_shift( $keys );
-			$url = $data["query"]["pages"][$key]["imageinfo"][0]["url"];
+			$url = wfFindFile( Title::newFromText( "File:" . $name ) )->getFullURL();
 			$titleIconURLs[] = $url;
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(),
-			array( 'pageTitle' => $pageTitle,
+			array(
+				'pageTitle' => $pageTitle,
 				'titleIcons' => $titleIconURLs
-					) );
+			) );
 
 		return true;
 
@@ -186,7 +107,7 @@ Note that because the returned value is a JSON object, you must specify ".
 	}
 	public function getExamples() {
 		return array(
-			'api.php?action=getTitleIcons&pageTitle=Test_Page_C&format=jsonfm' );
+			'api.php?action=getTitleIcons&pageTitle=Test_Page' );
 	}
 	public function getHelpUrls() {
 		return '';
