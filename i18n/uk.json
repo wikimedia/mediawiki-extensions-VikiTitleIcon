@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата"
+			"Ата",
+			"Base"
 		]
 	},
 	"vikititleicon-desc": "Плагін VIKI для відображення лого зі сторінок з використанням розширення Title Icon",
-	"vikititleicon-error-fetch": "Помилка при отриманні даних іконки заголовка для сторінки: $1."
+	"vikititleicon-error-fetch": "Помилка при отриманні даних іконки заголовка для сторінки: $1.",
+	"apihelp-getTitleIcons-description": "Отримати URLи всіх іконок заголовку сторінки, якщо такі існують.",
+	"apihelp-getTitleIcons-param-pageTitle": "заголовок сторінки, іконки заголовку якої Ви бажаєте отримати"
 }
