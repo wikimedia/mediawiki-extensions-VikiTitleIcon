@@ -34,7 +34,6 @@ if ( function_exists( 'wfLoadExtension' ) ) {
 	wfLoadExtension( 'VikiTitleIcon' );
 	// Keep i18n globals so mergeMessageFileList.php doesn't break
 	$wgMessagesDirs['VikiTitleIcon'] = __DIR__ . "/i18n";
-	$wgExtensionMessagesFiles['VikiTitleIcon'] = __DIR__ . '/VikiTitleIcon.i18n.php';
 	wfWarn(
 		'Deprecated PHP entry point used for VikiTitleIcon extension. Please use wfLoadExtension instead, ' .
 		'see https://www.mediawiki.org/wiki/Extension_registration for more details.'
