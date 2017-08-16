@@ -22,13 +22,13 @@
  */
 
 /**
-* To activate the functionality of this extension include the following
-* in your LocalSettings.php file:
-* MW 1.25+:
-* wfLoadExtension("VikiTitleIcon");
-* MW 1.22 - 1.24:
-* include_once("$IP/extensions/VikiTitleIcon/VikiTitleIcon.php");
-*/
+ * To activate the functionality of this extension include the following
+ * in your LocalSettings.php file:
+ * MW 1.25+:
+ * wfLoadExtension( "VikiTitleIcon" );
+ * MW 1.23 and MW 1.24:
+ * include_once "$IP/extensions/VikiTitleIcon/VikiTitleIcon.php";
+ */
 
 if ( function_exists( 'wfLoadExtension' ) ) {
 	wfLoadExtension( 'VikiTitleIcon' );
@@ -51,9 +51,9 @@ if ( !defined( 'VIKIJS_VERSION' ) ) {
 		. 'on a line ABOVE the line where you\'ve included VikiTitleIcon.' );
 }
 
-if ( version_compare( $wgVersion, '1.22', 'lt' ) ) {
+if ( version_compare( $wgVersion, '1.23', 'lt' ) ) {
 	die( '<b>Error:</b> This version of VikiTitleIcon '
-		. 'is only compatible with MediaWiki 1.22 or above.' );
+		. 'is only compatible with MediaWiki 1.23 or above.' );
 }
 
 if ( !defined( 'SMW_VERSION' ) ) {
@@ -69,16 +69,17 @@ if ( version_compare( SMW_VERSION, '1.9', '<' ) ) {
 $wgExtensionCredits['parserhook'][] = array (
 	'path' => __FILE__,
 	'name' => 'VikiTitleIcon',
-	'version' => '1.3.1',
-	'author' => '[http://www.mediawiki.org/wiki/User:Jji Jason Ji]',
+	'version' => '1.4.0',
+	'author' => '[https://www.mediawiki.org/wiki/User:Jji Jason Ji]',
 	'descriptionmsg' => 'vikititleicon-desc',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:VikiTitleIcon'
+	'url' => 'https://www.mediawiki.org/wiki/Extension:VikiTitleIcon',
+	'license-name' => 'MIT'
 );
 
 $wgMessagesDirs['VikiTitleIcon'] = __DIR__ . '/i18n';
 
 $wgResourceModules['ext.VikiTitleIcon'] = array(
-	'localBasePath' => dirname( __FILE__ ),
+	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'VikiTitleIcon',
 	'scripts' => array(
 		'VikiTitleIcon.js'
