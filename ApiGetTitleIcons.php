@@ -21,6 +21,8 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
+use MediaWiki\MediaWikiServices;
+
 class ApiGetTitleIcons extends ApiBase {
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
@@ -47,9 +49,15 @@ class ApiGetTitleIcons extends ApiBase {
 			}
 		}
 
+		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+			// MediaWiki 1.34+
+			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
+		} else {
+			$repoGroup = RepoGroup::singleton();
+		}
 		$titleIconURLs = array();
 		foreach ( $titleIconNames as $name ) {
-			$url = wfFindFile( Title::newFromText( "File:" . $name ) )->getFullURL();
+			$url = $repoGroup->findFile( Title::newFromText( "File:" . $name ) )->getFullURL();
 			$titleIconURLs[] = $url;
 		}
 
