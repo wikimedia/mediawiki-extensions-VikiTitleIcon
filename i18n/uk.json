@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ата",
 			"Base",
-			"Piramidion"
+			"Piramidion",
+			"Ата"
 		]
 	},
 	"vikititleicon-desc": "Плагін VIKI для відображення лого зі сторінок з використанням розширення Title Icon",
