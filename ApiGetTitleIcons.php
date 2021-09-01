@@ -85,8 +85,12 @@ class ApiGetTitleIcons extends ApiBase {
 
 		$strings = array();
 		foreach ( $values as $value ) {
-			if ( $value->getDIType() == SMWDataItem::TYPE_STRING ||
-				$value->getDIType() == SMWDataItem::TYPE_BLOB ) {
+			if ( (
+				defined( "SMWDataItem::TYPE_STRING" ) &&
+				$value->getDIType() === SMWDataItem::TYPE_STRING
+			) || (
+				defined( "SMWDataItem::TYPE_BLOB" ) && $value->getDIType() === SMWDataItem::TYPE_BLOB
+			) ) {
 				$strings[] = trim( $value->getString() );
 			}
 		}
