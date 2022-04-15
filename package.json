@@ -1,4 +1,5 @@
 {
+	"name": "VikiTitleIcon",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
