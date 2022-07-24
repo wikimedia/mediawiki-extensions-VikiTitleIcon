@@ -69,8 +69,7 @@ window.VIKI = ( function( mw, my ) {
 					self.titleIconSuccessHandler( vikiObject, data, node );
 				},
 				error: function( ) {
-					vikiObject.showError( mw.message( 'vikititleicon-error-fetch', node.pageTitle )
-						.text() );
+					vikiObject.showError( mw.msg( 'vikititleicon-error-fetch', node.pageTitle ) );
 					vikiObject.hookCompletion( self.hookName );
 				}
 			} );
