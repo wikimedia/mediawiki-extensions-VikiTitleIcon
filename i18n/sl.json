@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"vikititleicon-desc": "Vtičnik VIKI za prikaz logotipa s strani z uporabo razširitve »Title Icon«.",
+	"vikititleicon-error-fetch": "Napaka pri pridobivanju podatkov naslovnih ikon za vozlišče: $1.",
+	"apihelp-getTitleIcons-description": "Pridobi URL-je vseh naslovnih ikon strani, če obstajajo.",
+	"apihelp-getTitleIcons-summary": "Pridobi URL-je vseh naslovnih ikon za stran, če obstajajo.",
+	"apihelp-getTitleIcons-param-pageTitle": "naslov strani, katere naslovne ikone želite pridobiti"
+}
