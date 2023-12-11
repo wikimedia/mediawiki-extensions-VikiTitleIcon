@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"vikititleicon-desc": "VIKI-plug-in om het logo weer te geven vanuit pagina’s die gebruik maken van de uitbreiding Title Icon",
+	"vikititleicon-error-fetch": "Fout bij het opvragen van titelpictogram-gegevens voor het knooppunt: $1.",
+	"apihelp-getTitleIcons-summary": "De URL’s opvragen van alle titelpictogrammen voor de pagina, indien aanwezig.",
+	"apihelp-getTitleIcons-param-pageTitle": "titel van de pagina waarvan u de titelpictogrammen wilt opvragen"
+}
