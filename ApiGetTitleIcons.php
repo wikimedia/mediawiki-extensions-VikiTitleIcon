@@ -49,12 +49,7 @@ class ApiGetTitleIcons extends ApiBase {
 			}
 		}
 
-		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
-			// MediaWiki 1.34+
-			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-		} else {
-			$repoGroup = RepoGroup::singleton();
-		}
+		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		$titleIconURLs = array();
 		foreach ( $titleIconNames as $name ) {
 			$url = $repoGroup->findFile( Title::newFromText( "File:" . $name ) )->getFullURL();
