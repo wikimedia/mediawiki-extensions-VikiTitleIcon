@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 class ApiGetTitleIcons extends ApiBase {
 	public function __construct( $main, $action ) {
