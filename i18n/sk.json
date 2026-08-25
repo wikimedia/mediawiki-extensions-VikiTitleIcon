@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"vikititleicon-desc": "Zásuvný modul VIKI na zobrazovanie loga zo stránok používajúcich rozšírenie Title Icon",
+	"vikititleicon-error-fetch": "Chyba pri získavaní údajov o ikone názvu pre uzol: $1.",
+	"apihelp-getTitleIcons-summary": "Získať URL všetkých ikon názvu stránky, ak nejaké existujú.",
+	"apihelp-getTitleIcons-param-pageTitle": "názov stránky, ktorej ikony názvu chcete získať"
+}
